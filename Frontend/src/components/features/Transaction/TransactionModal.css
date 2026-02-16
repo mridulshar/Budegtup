@@ -1,0 +1,477 @@
+/* Transaction Modal Styles */
+
+/* Overlay */
+.transaction-modal-overlay {
+    position: fixed !important;
+    inset: 0 !important;
+    display: grid !important;
+    place-items: center !important;
+    background: rgba(0, 0, 0, 0.65) !important;
+    backdrop-filter: blur(14px) saturate(120%) !important;
+    -webkit-backdrop-filter: blur(14px) saturate(120%) !important;
+    z-index: 1000 !important;
+    animation: modalFadeIn 0.25s ease-out forwards !important;
+    padding: 16px !important;
+}
+
+@keyframes modalFadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+/* Modal Container */
+.transaction-modal-container {
+    position: relative !important;
+    width: min(92vw, 600px) !important;
+    max-width: 600px !important;
+    border-radius: 18px !important;
+    background: var(--bg-secondary) !important;
+    color: var(--text-primary) !important;
+    border: 1px solid var(--border-color) !important;
+    box-shadow: 0 12px 45px rgba(0, 0, 0, 0.35) !important;
+    overflow: hidden !important;
+    animation: modalSlideUp 0.3s cubic-bezier(0.18, 0.8, 0.25, 1) !important;
+    max-height: 95vh !important;
+    display: flex !important;
+    flex-direction: column !important;
+}
+
+@keyframes modalSlideUp {
+    from {
+        transform: translateY(24px) scale(0.97);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0) scale(1);
+        opacity: 1;
+    }
+}
+
+/* Close Button */
+.transaction-modal-close {
+    all: unset !important;
+    box-sizing: border-box !important;
+    position: absolute !important;
+    top: 1rem !important;
+    right: 1rem !important;
+    width: 36px !important;
+    height: 36px !important;
+    border-radius: 50% !important;
+    border: 1px solid var(--border-color) !important;
+    background: var(--bg-tertiary) !important;
+    color: var(--text-primary) !important;
+    cursor: pointer !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    transition: all 0.3s ease !important;
+    z-index: 50 !important;
+}
+
+.transaction-modal-close:hover {
+    background: var(--accent-primary) !important;
+    color: white !important;
+    border-color: var(--accent-primary) !important;
+    transform: rotate(90deg) !important;
+}
+
+/* Modal Header */
+.transaction-modal-header {
+    padding: 2rem 2rem 1rem !important;
+    border-bottom: 1px solid var(--border-color) !important;
+    flex-shrink: 0 !important;
+}
+
+.transaction-modal-header h2 {
+    margin: 0 0 0.5rem 0 !important;
+    font-size: 1.5rem !important;
+    font-weight: 800 !important;
+    color: var(--text-primary) !important;
+    background: linear-gradient(135deg, var(--text-primary) 0%, var(--accent-primary) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.transaction-modal-header p {
+    margin: 0 !important;
+    font-size: 0.9rem !important;
+    color: var(--text-secondary) !important;
+}
+
+/* Transaction Form */
+.transaction-form {
+    overflow-y: auto !important;
+    padding: 2rem !important;
+    max-height: calc(95vh - 120px) !important;
+    flex: 1 !important;
+}
+
+.transaction-form::-webkit-scrollbar {
+    width: 6px !important;
+}
+
+.transaction-form::-webkit-scrollbar-thumb {
+    background: var(--border-color) !important;
+    border-radius: 10px !important;
+}
+
+.transaction-form::-webkit-scrollbar-track {
+    background: transparent !important;
+}
+
+/* Form Groups */
+.form-group {
+    margin-bottom: 1.75rem !important;
+}
+
+.form-label {
+    display: flex !important;
+    align-items: center !important;
+    gap: 0.5rem !important;
+    font-size: 0.85rem !important;
+    font-weight: 700 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.5px !important;
+    color: var(--text-secondary) !important;
+    margin-bottom: 0.75rem !important;
+}
+
+/* Form Inputs */
+.form-input {
+    width: 100% !important;
+    padding: 0.875rem 1rem !important;
+    background: var(--bg-tertiary) !important;
+    border: 1px solid var(--border-color) !important;
+    border-radius: 10px !important;
+    color: var(--text-primary) !important;
+    font-size: 0.95rem !important;
+    font-family: inherit !important;
+    transition: all 0.3s ease !important;
+    box-sizing: border-box !important;
+}
+
+.form-input:focus {
+    outline: none !important;
+    border-color: var(--accent-primary) !important;
+    background: var(--bg-secondary) !important;
+    box-shadow: 0 0 0 3px rgba(0, 122, 204, 0.1) !important;
+}
+
+.form-input.error {
+    border-color: var(--danger) !important;
+}
+
+.form-input::placeholder {
+    color: var(--text-secondary) !important;
+    opacity: 0.6 !important;
+}
+
+/* Input with Prefix */
+.input-with-prefix {
+    position: relative !important;
+    display: flex !important;
+    align-items: center !important;
+}
+
+.input-prefix {
+    position: absolute !important;
+    left: 1rem !important;
+    font-size: 1rem !important;
+    font-weight: 600 !important;
+    color: var(--text-secondary) !important;
+    pointer-events: none !important;
+}
+
+.form-input.with-prefix {
+    padding-left: 2.25rem !important;
+}
+
+/* Textarea */
+.form-textarea {
+    width: 100% !important;
+    padding: 0.875rem 1rem !important;
+    background: var(--bg-tertiary) !important;
+    border: 1px solid var(--border-color) !important;
+    border-radius: 10px !important;
+    color: var(--text-primary) !important;
+    font-size: 0.95rem !important;
+    font-family: inherit !important;
+    resize: vertical !important;
+    transition: all 0.3s ease !important;
+    box-sizing: border-box !important;
+    min-height: 80px !important;
+}
+
+.form-textarea:focus {
+    outline: none !important;
+    border-color: var(--accent-primary) !important;
+    background: var(--bg-secondary) !important;
+    box-shadow: 0 0 0 3px rgba(0, 122, 204, 0.1) !important;
+}
+
+.form-textarea::placeholder {
+    color: var(--text-secondary) !important;
+    opacity: 0.6 !important;
+}
+
+/* Error Message */
+.error-message {
+    display: flex !important;
+    align-items: center !important;
+    gap: 0.35rem !important;
+    margin-top: 0.5rem !important;
+    font-size: 0.8rem !important;
+    color: var(--danger) !important;
+    font-weight: 500 !important;
+}
+
+/* Type Toggle */
+.type-toggle {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    gap: 0.75rem !important;
+}
+
+.type-btn {
+    all: unset !important;
+    box-sizing: border-box !important;
+    padding: 1rem !important;
+    background: var(--bg-tertiary) !important;
+    border: 2px solid var(--border-color) !important;
+    border-radius: 12px !important;
+    cursor: pointer !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    gap: 0.5rem !important;
+    transition: all 0.3s ease !important;
+    font-weight: 600 !important;
+    color: var(--text-primary) !important;
+}
+
+.type-btn:hover {
+    background: var(--bg-secondary) !important;
+    border-color: var(--accent-primary) !important;
+}
+
+.type-btn.active {
+    background: linear-gradient(135deg, rgba(0, 122, 204, 0.15) 0%, rgba(0, 152, 255, 0.15) 100%) !important;
+    border-color: var(--accent-primary) !important;
+    color: var(--accent-primary) !important;
+}
+
+.type-icon {
+    font-size: 1.75rem !important;
+}
+
+/* Category Grid */
+.category-grid {
+    display: grid !important;
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)) !important;
+    gap: 0.75rem !important;
+}
+
+.category-option {
+    all: unset !important;
+    box-sizing: border-box !important;
+    padding: 1rem 0.75rem !important;
+    background: var(--bg-tertiary) !important;
+    border: 2px solid var(--border-color) !important;
+    border-radius: 12px !important;
+    cursor: pointer !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    gap: 0.5rem !important;
+    transition: all 0.3s ease !important;
+    text-align: center !important;
+}
+
+.category-option:hover {
+    background: var(--bg-secondary) !important;
+    border-color: var(--accent-primary) !important;
+    transform: translateY(-2px) !important;
+}
+
+.category-option.selected {
+    background: linear-gradient(135deg, rgba(0, 122, 204, 0.15) 0%, rgba(0, 152, 255, 0.15) 100%) !important;
+    border-color: var(--accent-primary) !important;
+}
+
+.category-option-icon {
+    font-size: 1.75rem !important;
+}
+
+.category-option-label {
+    font-size: 0.8rem !important;
+    font-weight: 600 !important;
+    color: var(--text-primary) !important;
+}
+
+/* Checkbox Label */
+.checkbox-label {
+    display: flex !important;
+    align-items: flex-start !important;
+    gap: 1rem !important;
+    padding: 1.25rem !important;
+    background: var(--bg-tertiary) !important;
+    border: 2px solid var(--border-color) !important;
+    border-radius: 12px !important;
+    cursor: pointer !important;
+    transition: all 0.3s ease !important;
+}
+
+.checkbox-label:hover {
+    background: var(--bg-secondary) !important;
+    border-color: var(--accent-primary) !important;
+}
+
+.form-checkbox {
+    width: 20px !important;
+    height: 20px !important;
+    margin-top: 0.25rem !important;
+    cursor: pointer !important;
+    accent-color: var(--accent-primary) !important;
+    flex-shrink: 0 !important;
+}
+
+.checkbox-content {
+    display: flex !important;
+    align-items: flex-start !important;
+    gap: 0.75rem !important;
+    flex: 1 !important;
+}
+
+.checkbox-icon {
+    width: 40px !important;
+    height: 40px !important;
+    background: linear-gradient(135deg, rgba(255, 230, 109, 0.2) 0%, rgba(255, 230, 109, 0.1) 100%) !important;
+    border-radius: 10px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    color: #FFE66D !important;
+    flex-shrink: 0 !important;
+}
+
+.checkbox-text {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 0.25rem !important;
+}
+
+.checkbox-title {
+    font-size: 0.95rem !important;
+    font-weight: 700 !important;
+    color: var(--text-primary) !important;
+}
+
+.checkbox-description {
+    font-size: 0.8rem !important;
+    color: var(--text-secondary) !important;
+    line-height: 1.4 !important;
+}
+
+/* Form Actions */
+.form-actions {
+    display: flex !important;
+    gap: 1rem !important;
+    margin-top: 2rem !important;
+    padding-top: 1.5rem !important;
+    border-top: 1px solid var(--border-color) !important;
+}
+
+.btn-cancel {
+    flex: 1 !important;
+    padding: 0.875rem 1.5rem !important;
+    background: var(--bg-tertiary) !important;
+    border: 1px solid var(--border-color) !important;
+    border-radius: 10px !important;
+    color: var(--text-primary) !important;
+    font-size: 0.95rem !important;
+    font-weight: 600 !important;
+    cursor: pointer !important;
+    transition: all 0.3s ease !important;
+    font-family: inherit !important;
+}
+
+.btn-cancel:hover {
+    background: var(--bg-secondary) !important;
+    border-color: var(--text-secondary) !important;
+}
+
+.btn-submit {
+    flex: 1 !important;
+    padding: 0.875rem 1.5rem !important;
+    background: linear-gradient(135deg, var(--accent-primary) 0%, var(--accent-hover) 100%) !important;
+    border: none !important;
+    border-radius: 10px !important;
+    color: white !important;
+    font-size: 0.95rem !important;
+    font-weight: 600 !important;
+    cursor: pointer !important;
+    transition: all 0.3s ease !important;
+    box-shadow: 0 4px 12px rgba(0, 122, 204, 0.3) !important;
+    font-family: inherit !important;
+}
+
+.btn-submit:hover {
+    transform: translateY(-2px) !important;
+    box-shadow: 0 6px 20px rgba(0, 122, 204, 0.4) !important;
+}
+
+.btn-submit:active {
+    transform: translateY(0) !important;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .transaction-modal-container {
+        width: 95vw !important;
+        max-width: 95vw !important;
+    }
+
+    .transaction-modal-header {
+        padding: 1.5rem 1.5rem 1rem !important;
+    }
+
+    .transaction-modal-header h2 {
+        font-size: 1.25rem !important;
+    }
+
+    .transaction-form {
+        padding: 1.5rem !important;
+    }
+
+    .category-grid {
+        grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)) !important;
+    }
+
+    .form-actions {
+        flex-direction: column !important;
+    }
+}
+
+@media (max-width: 480px) {
+    .transaction-modal-close {
+        top: 0.75rem !important;
+        right: 0.75rem !important;
+        width: 32px !important;
+        height: 32px !important;
+    }
+
+    .category-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+    }
+
+    .type-toggle {
+        grid-template-columns: 1fr !important;
+    }
+}

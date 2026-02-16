@@ -1,0 +1,92 @@
+/* frontend/src/views/OnboardingScreen.css */
+.onboarding-loading-screen {
+  width: 100vw;
+  height: 100vh;
+  background: var(--bg-primary, #000000);
+  color: var(--text-primary, #ffffff);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.loading-content {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.loading-spinner {
+  width: 40px;
+  height: 40px;
+  border: 3px solid var(--border-color, #333);
+  border-top: 3px solid var(--primary-color, #3b82f6);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.loading-content p {
+  color: var(--text-secondary, #a0a0a0);
+  font-size: 0.9rem;
+}
+
+.onboarding-screen {
+  width: 100vw;
+  height: 100vh;
+  background: var(--bg-primary, #000000);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Light mode support */
+@media (prefers-color-scheme: light) {
+  .onboarding-loading-screen,
+  .onboarding-screen {
+    --bg-primary: #ffffff;
+    --text-primary: #1a1a1a;
+    --text-secondary: #666666;
+    --border-color: #e5e5e5;
+    --primary-color: #3b82f6;
+  }
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+  .onboarding-loading-screen,
+  .onboarding-screen {
+    --bg-primary: #000000;
+    --text-primary: #ffffff;
+    --text-secondary: #a0a0a0;
+    --border-color: #333333;
+    --primary-color: #3b82f6;
+  }
+}
+.onboarding-screen {
+  width: 100vw;
+  height: 100vh;
+  background: var(--bg-primary, #000000);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Light mode support */
+@media (prefers-color-scheme: light) {
+  .onboarding-screen {
+    --bg-primary: #ffffff;
+  }
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+  .onboarding-screen {
+    --bg-primary: #000000;
+  }
+}

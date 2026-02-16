@@ -1,0 +1,309 @@
+/* ==================== BudgetUp Auth Form Styles ==================== */
+
+.budgetup-auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* -------------------- Header -------------------- */
+.budgetup-form-header {
+  text-align: center;
+  margin-bottom: 16px;
+}
+
+.budgetup-form-header h2 {
+  font-size: 20px;
+  font-weight: 700;
+  color: #ffffff;
+  margin: 0 0 8px 0;
+}
+
+.budgetup-form-header p {
+  font-size: 14px;
+  color: #94a3b8;
+  margin: 0;
+}
+
+/* -------------------- Google Button Container -------------------- */
+.budgetup-google-btn-container {
+  width: 100%;
+}
+
+/* -------------------- Form Group -------------------- */
+.budgetup-form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.budgetup-form-group label {
+  font-size: 14px;
+  font-weight: 600;
+  color: #ffffff;
+}
+
+.budgetup-auth-input {
+  width: 100%;
+  padding: 12px 14px;
+  border-radius: 10px;
+  border: 1.5px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.05);
+  font-size: 15px;
+  color: #ffffff;
+  transition: 0.16s ease;
+}
+
+.budgetup-auth-input:focus {
+  outline: none;
+  border-color: #6d28d9;
+  box-shadow: 0 0 0 3px rgba(109, 40, 217, 0.2);
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.budgetup-auth-input::placeholder {
+  color: #64748b;
+}
+
+/* -------------------- Divider -------------------- */
+.budgetup-or-sep {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 10px 0 8px;
+}
+
+.budgetup-or-sep span {
+  background: #1e293b;
+  color: #94a3b8;
+  padding: 0 12px;
+  font-size: 13px;
+}
+
+.budgetup-or-sep::before,
+.budgetup-or-sep::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.1);
+  margin: 0 12px;
+}
+
+@media (max-width: 480px) {
+  .budgetup-or-sep {
+    display: none !important;
+  }
+}
+
+/* -------------------- Auth Buttons -------------------- */
+button.budgetup-auth-btn {
+  width: 100%;
+  padding: 12px 20px;
+  font-size: 14px;
+  font-weight: 600;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.budgetup-auth-btn.budgetup-primary {
+  background: #6d28d9;
+  color: #ffffff;
+  border: none;
+}
+
+.budgetup-auth-btn.budgetup-primary:hover {
+  background: #5b21b6;
+  transform: translateY(-1px);
+}
+
+.budgetup-auth-btn.budgetup-secondary {
+  background: rgba(255, 255, 255, 0.05);
+  color: #ffffff;
+  border: 1.5px solid rgba(255, 255, 255, 0.1);
+}
+
+.budgetup-auth-btn.budgetup-secondary:hover {
+  background: rgba(109, 40, 217, 0.15);
+  border-color: #6d28d9;
+}
+
+button.budgetup-auth-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* -------------------- Meta Row (Remember + Forgot) -------------------- */
+.budgetup-form-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 4px 0 10px;
+  font-size: 13px;
+  color: #94a3b8;
+}
+
+.budgetup-remember {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+  color: #ffffff;
+}
+
+.budgetup-remember input {
+  width: 14px;
+  height: 14px;
+  accent-color: #6d28d9;
+}
+
+.budgetup-form-right {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: -4px;
+  margin-bottom: 8px;
+}
+
+/* -------------------- Link Buttons -------------------- */
+.budgetup-link-btn {
+  background: none;
+  border: none;
+  color: #a78bfa;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 0;
+  font-size: 13px;
+  transition: 0.15s ease;
+}
+
+.budgetup-link-btn:hover {
+  color: #c4b5fd;
+  text-decoration: underline;
+}
+
+/* -------------------- Footer -------------------- */
+.budgetup-form-footer {
+  display: flex;
+  gap: 6px;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  font-size: 13px;
+  color: #94a3b8;
+  margin-top: 8px;
+}
+
+.budgetup-form-footer button {
+  background: none;
+  border: none;
+  color: #a78bfa;
+  cursor: pointer;
+  font-weight: 700;
+  padding: 0;
+}
+
+.budgetup-form-footer button:hover {
+  color: #c4b5fd;
+  text-decoration: underline;
+}
+
+@media (max-width: 480px) {
+  .budgetup-form-footer {
+    display: none !important;
+  }
+}
+
+/* -------------------- Error Message -------------------- */
+.budgetup-error-message {
+  background: rgba(239, 68, 68, 0.15);
+  border: 1px solid rgba(239, 68, 68, 0.4);
+  color: #fca5a5;
+  padding: 12px 16px;
+  border-radius: 8px;
+  margin-bottom: 16px;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+/* ==================== Email Step (Focused View) ==================== */
+.budgetup-email-step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  padding: 24px 0 12px;
+}
+
+.budgetup-email-step .budgetup-form-header {
+  margin-bottom: 4px;
+  text-align: center;
+}
+
+.budgetup-email-step h2 {
+  font-size: 20px;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.budgetup-email-step p {
+  font-size: 13px;
+  color: #94a3b8;
+  margin-top: 2px;
+  text-align: center;
+}
+
+.budgetup-email-step label {
+  align-self: flex-start;
+  font-weight: 600;
+  font-size: 13px;
+  margin-bottom: -6px;
+  color: #ffffff;
+}
+
+.budgetup-email-step input {
+  width: 100%;
+  padding: 12px 14px;
+  border-radius: 10px;
+  border: 1.5px solid rgba(255, 255, 255, 0.1) !important;
+  background: rgba(255, 255, 255, 0.05) !important;
+  font-size: 15px;
+  color: #ffffff !important;
+  transition: 0.16s ease;
+}
+
+.budgetup-email-step input:focus {
+  outline: none;
+  border-color: #6d28d9 !important;
+  box-shadow: 0 0 0 3px rgba(109, 40, 217, 0.2);
+  background: rgba(255, 255, 255, 0.05) !important;
+}
+
+.budgetup-email-step .budgetup-auth-btn {
+  width: 100%;
+  margin-top: 4px;
+  border-radius: 10px;
+  font-weight: 700;
+  font-size: 14px;
+}
+
+.budgetup-email-step .budgetup-link-btn {
+  display: block;
+  text-align: center;
+  margin-top: 8px;
+  font-size: 13px;
+  color: #a78bfa;
+}
+
+/* Reduce gap on small screens */
+@media (max-width: 480px) {
+  .budgetup-auth-form {
+    gap: 12px;
+  }
+}

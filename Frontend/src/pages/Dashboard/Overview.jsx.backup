@@ -1,0 +1,335 @@
+import React, { useState, useEffect } from 'react';
+import {
+  TrendingUp,
+  TrendingDown,
+  Wallet,
+  Target,
+  PieChart,
+  ArrowUpRight,
+  ArrowDownRight,
+  DollarSign,
+  CheckCircle,
+  Clock,
+  Zap,
+  Calendar,
+  Activity
+} from 'lucide-react';
+import './Overview.css';
+import transactionService from '../services/transactionService';
+import goalService from '../services/goalService';
+import { useCurrency } from '../CurrencyContext';
+import { useAuth } from './AuthContext';
+
+export default function Overview() {
+  const [loading, setLoading] = useState(true);
+  const [stats, setStats] = useState(null);
+  const [transactions, setTransactions] = useState([]);
+  const [goals, setGoals] = useState(null);
+  const [categoryBreakdown, setCategoryBreakdown] = useState([]);
+
+  const { currencySymbol, formatAmount, profile } = useCurrency();
+  const { token } = useAuth();
+
+  useEffect(() => {
+    fetchData();
+
+    // Set up polling for real-time updates every 30 seconds
+    const interval = setInterval(fetchData, 30000);
+    return () => clearInterval(interval);
+  }, []);
+
+  const fetchData = async () => {
+    try {
+      setLoading(true);
+
+      // Fetch stats, transactions, and goals in parallel
+      const [statsData, transactionsData, goalsData] = await Promise.all([
+        transactionService.getStatistics('month'),
+        transactionService.getAll({ limit: 10 }),
+        goalService.getAll()
+      ]);
+
+      setStats(statsData.data);
+      setTransactions(transactionsData.data || []);
+
+      // Calculate category breakdown
+      if (statsData.data?.categoryBreakdown) {
+        const breakdown = Object.entries(statsData.data.categoryBreakdown).map(([category, amount]) => ({
+          category,
+          amount,
+          percentage: statsData.data.totalExpenses > 0
+            ? ((amount / statsData.data.totalExpenses) * 100).toFixed(1)
+            : 0
+        })).sort((a, b) => b.amount - a.amount).slice(0, 5);
+
+        setCategoryBreakdown(breakdown);
+      }
+
+      // Calculate goals metrics
+      const goalsList = goalsData.data || [];
+      const achievedGoals = goalsList.filter(g => g.isCompleted).length;
+      const ongoingGoals = goalsList.filter(g => !g.isCompleted).length;
+      const totalGoals = goalsList.length;
+      const completionRate = totalGoals > 0 ? ((achievedGoals / totalGoals) * 100).toFixed(0) : 0;
+
+      setGoals({
+        total: totalGoals,
+        achieved: achievedGoals,
+        ongoing: ongoingGoals,
+        completionRate: parseFloat(completionRate)
+      });
+
+    } catch (error) {
+      console.error('Error fetching data:', error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const getCategoryIcon = (category) => {
+    const icons = {
+      'Income': '💰',
+      'Food & Dining': '🍽️',
+      'Entertainment': '🎬',
+      'Shopping': '🛍️',
+      'Transportation': '🚗',
+      'Utilities': '⚡',
+      'Health & Fitness': '💪',
+      'Education': '📚',
+      'Housing': '🏠',
+      'Other': '💳'
+    };
+    return icons[category] || '💳';
+  };
+
+  const getCategoryColor = (index) => {
+    const colors = ['#4ECDC4', '#FF6B6B', '#A78BFA', '#FFE66D', '#5B7FFF'];
+    return colors[index % colors.length];
+  };
+
+  // Get real monthly income from profile
+  const monthlyIncome = profile?.occupation === 'Student'
+    ? profile?.pocketMoney || 0
+    : profile?.monthlyIncome || 0;
+
+  if (loading) {
+    return (
+      <div className="overview-container">
+        <div className="overview-loading">
+          <div className="loading-spinner"></div>
+          <p>Loading your financial overview...</p>
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <div className="overview-container">
+      {/* Header */}
+      <div className="overview-header">
+        <div className="header-text">
+          <h1>Financial Overview</h1>
+          <p>Track your income, expenses, and achieve your financial goals</p>
+        </div>
+        <div className="header-info">
+          <Activity size={20} className="pulse-icon" />
+          <span className="live-indicator">Live Updates</span>
+        </div>
+      </div>
+
+      {/* Top Stats Grid */}
+      <div className="stats-grid">
+        {/* Monthly Income Card */}
+        <div className="stat-card income-card">
+          <div className="stat-background-circle" style={{ background: '#4ECDC4' }}></div>
+
+          <div className="stat-header">
+            <div className="stat-icon" style={{ background: '#4ECDC415' }}>
+              <DollarSign size={24} color="#4ECDC4" />
+            </div>
+            <div className="change-badge positive">
+              <ArrowUpRight size={14} />
+              {stats?.incomeChange ? Math.abs(stats.incomeChange).toFixed(1) : '0'}%
+            </div>
+          </div>
+
+          <div className="stat-content">
+            <p className="stat-label">Monthly Income</p>
+            <h2 className="stat-value">{formatAmount(monthlyIncome)}</h2>
+            <p className="stat-description">
+              {profile?.occupation === 'Student' ? 'Pocket Money' : 'From Profile'}
+            </p>
+          </div>
+        </div>
+
+        {/* Monthly Spent Card */}
+        <div className="stat-card spent-card">
+          <div className="stat-background-circle" style={{ background: '#FF6B6B' }}></div>
+
+          <div className="stat-header">
+            <div className="stat-icon" style={{ background: '#FF6B6B15' }}>
+              <Wallet size={24} color="#FF6B6B" />
+            </div>
+            <div className={`change-badge ${(stats?.expenseChange || 0) < 0 ? 'positive' : 'negative'}`}>
+              {(stats?.expenseChange || 0) < 0 ? <ArrowDownRight size={14} /> : <ArrowUpRight size={14} />}
+              {Math.abs(stats?.expenseChange || 0).toFixed(1)}%
+            </div>
+          </div>
+
+          <div className="stat-content">
+            <p className="stat-label">Monthly Spending</p>
+            <h2 className="stat-value">{formatAmount(stats?.totalExpenses || 0)}</h2>
+            {stats?.expenseChange && stats?.expenseChange < 0 && (
+              <div className="comparison-text">
+                <TrendingDown size={16} color="#4ECDC4" />
+                <span>Great! Spending is down from last month</span>
+              </div>
+            )}
+          </div>
+        </div>
+
+        {/* Goals Card */}
+        <div className="stat-card goals-card">
+          <div className="stat-background-circle" style={{ background: '#A78BFA' }}></div>
+
+          <div className="stat-header">
+            <div className="stat-icon" style={{ background: '#A78BFA15' }}>
+              <Target size={24} color="#A78BFA" />
+            </div>
+          </div>
+
+          <div className="stat-content">
+            <p className="stat-label">Financial Goals</p>
+            <h2 className="stat-value">{goals?.total || 0}</h2>
+            <div className="goals-progress">
+              <div className="goal-stat">
+                <CheckCircle size={18} color="#4ECDC4" />
+                <span>{goals?.achieved || 0} Achieved</span>
+              </div>
+              <div className="goal-stat">
+                <Clock size={18} color="#FFE66D" />
+                <span>{goals?.ongoing || 0} Ongoing</span>
+              </div>
+            </div>
+            <div className="progress-ring-container">
+              <svg className="progress-ring" width="80" height="80">
+                <circle
+                  className="progress-ring-circle-bg"
+                  stroke="#A78BFA20"
+                  strokeWidth="8"
+                  fill="transparent"
+                  r="32"
+                  cx="40"
+                  cy="40"
+                />
+                <circle
+                  className="progress-ring-circle"
+                  stroke="#A78BFA"
+                  strokeWidth="8"
+                  fill="transparent"
+                  r="32"
+                  cx="40"
+                  cy="40"
+                  strokeDasharray={`${2 * Math.PI * 32}`}
+                  strokeDashoffset={`${2 * Math.PI * 32 * (1 - (goals?.completionRate || 0) / 100)}`}
+                />
+                <text x="40" y="45" textAnchor="middle" className="progress-text">{goals?.completionRate || 0}%</text>
+              </svg>
+            </div>
+          </div>
+        </div>
+
+        {/* Savings Rate Card */}
+        <div className="stat-card savings-card">
+          <div className="stat-background-circle" style={{ background: '#5B7FFF' }}></div>
+
+          <div className="stat-header">
+            <div className="stat-icon" style={{ background: '#5B7FFF15' }}>
+              <PieChart size={24} color="#5B7FFF" />
+            </div>
+            <div className={`change-badge ${(stats?.savingsRate || 0) > 0 ? 'positive' : 'negative'}`}>
+              {(stats?.savingsRate || 0) > 0 ? <ArrowUpRight size={14} /> : <ArrowDownRight size={14} />}
+              {Math.abs(stats?.savingsRate || 0).toFixed(1)}%
+            </div>
+          </div>
+
+          <div className="stat-content">
+            <p className="stat-label">Savings Rate</p>
+            <h2 className="stat-value">{stats?.savingsRate || 0}%</h2>
+            <div className="comparison-text">
+              <TrendingUp size={16} color="#4ECDC4" />
+              <span>
+                {monthlyIncome > 0
+                  ? `Saved ${formatAmount(monthlyIncome - (stats?.totalExpenses || 0))}`
+                  : 'Keep up the good work!'}
+              </span>
+            </div>
+            <div className="savings-info">
+              <Zap size={16} color="#FFE66D" />
+              <span className="savings-message">You're doing great!</span>
+              <p>Your latest financial activities</p>
+            </div>
+            <div className="header-actions">
+              <button className="filter-btn">
+                <Calendar size={16} />
+                This Month
+              </button>
+            </div>
+          </div>
+
+          {transactions && transactions.length > 0 ? (
+            <div className="transactions-table">
+              <div className="table-header">
+                <div className="th category-col">Category</div>
+                <div className="th merchant-col">Merchant</div>
+                <div className="th amount-col">Amount</div>
+                <div className="th date-col">Date</div>
+                <div className="th status-col">Status</div>
+              </div>
+
+              <div className="table-body">
+                {transactions.map((transaction) => (
+                  <div
+                    key={transaction._id}
+                    className="table-row"
+                  >
+                    <div className="td category-col">
+                      <div className="category-cell">
+                        <span className="category-icon">{getCategoryIcon(transaction.category)}</span>
+                        <span className="category-name">{transaction.category}</span>
+                      </div>
+                    </div>
+                    <div className="td merchant-col">
+                      <span className="merchant-name">{transaction.merchant}</span>
+                    </div>
+                    <div className="td amount-col">
+                      <span className={`amount ${transaction.type === 'income' ? 'positive' : 'negative'}`}>
+                        {transaction.type === 'income' ? '+' : '-'}{formatAmount(Math.abs(transaction.amount), false)}
+                      </span>
+                    </div>
+                    <div className="td date-col">
+                      <span className="transaction-date">
+                        {new Date(transaction.date).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}
+                      </span>
+                    </div>
+                    <div className="td status-col">
+                      {transaction.isRecurring && (
+                        <span className="recurring-badge">
+                          <Zap size={14} />
+                          Recurring
+                        </span>
+                      )}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          ) : (
+            <div className="no-transactions">
+              <p>No transactions found. Start by adding your first transaction!</p>
+            </div>
+          )}
+        </div>
+      </div>
+      );
+}

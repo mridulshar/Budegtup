@@ -1,0 +1,520 @@
+/* Create Transaction Modal Styles - Premium Narrow Design */
+
+/* Overlay */
+.create-modal-overlay {
+  position: fixed !important;
+  inset: 0 !important;
+  display: grid !important;
+  place-items: center !important;
+  background: rgba(0, 0, 0, 0.75) !important;
+  backdrop-filter: blur(16px) saturate(130%) !important;
+  -webkit-backdrop-filter: blur(16px) saturate(130%) !important;
+  z-index: 1000 !important;
+  animation: createModalFadeIn 0.3s ease-out forwards !important;
+  padding: 16px !important;
+}
+
+@keyframes createModalFadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+/* Modal Container - Narrower & Premium */
+.create-modal-container {
+  position: relative !important;
+  width: min(92vw, 460px) !important;
+  max-width: 460px !important;
+  border-radius: 20px !important;
+  background: var(--bg-secondary) !important;
+  color: var(--text-primary) !important;
+  border: 1px solid var(--border-color) !important;
+  box-shadow:
+    0 25px 70px rgba(0, 0, 0, 0.6),
+    0 10px 30px rgba(0, 0, 0, 0.4),
+    0 0 0 1px rgba(255, 255, 255, 0.05) inset !important;
+  overflow: hidden !important;
+  animation: createModalSlideUp 0.4s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  max-height: 90vh !important;
+  display: flex !important;
+  flex-direction: column !important;
+}
+
+@keyframes createModalSlideUp {
+  from {
+    transform: translateY(30px) scale(0.95);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+}
+
+/* Close Button - Enhanced */
+.create-modal-close {
+  all: unset !important;
+  box-sizing: border-box !important;
+  position: absolute !important;
+  top: 1.25rem !important;
+  right: 1.25rem !important;
+  width: 34px !important;
+  height: 34px !important;
+  border-radius: 50% !important;
+  border: 1px solid var(--border-color) !important;
+  background: rgba(255, 255, 255, 0.05) !important;
+  color: var(--text-secondary) !important;
+  cursor: pointer !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  z-index: 50 !important;
+  backdrop-filter: blur(10px) !important;
+}
+
+.create-modal-close:hover {
+  background: var(--accent-primary) !important;
+  color: white !important;
+  border-color: var(--accent-primary) !important;
+  transform: rotate(90deg) scale(1.05) !important;
+  box-shadow: 0 4px 12px rgba(0, 122, 204, 0.4) !important;
+}
+
+/* Modal Header - Refined */
+.create-modal-header {
+  padding: 2rem 1.75rem 1.25rem !important;
+  border-bottom: 1px solid var(--border-color) !important;
+  flex-shrink: 0 !important;
+  background: linear-gradient(180deg, var(--bg-secondary) 0%, transparent 100%) !important;
+}
+
+.create-modal-header h2 {
+  margin: 0 0 0.5rem 0 !important;
+  font-size: 1.4rem !important;
+  font-weight: 800 !important;
+  color: var(--text-primary) !important;
+  background: linear-gradient(135deg, var(--text-primary) 0%, var(--accent-primary) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  letter-spacing: -0.02em !important;
+}
+
+.create-modal-header p {
+  margin: 0 !important;
+  font-size: 0.875rem !important;
+  color: var(--text-secondary) !important;
+  opacity: 0.9 !important;
+}
+
+/* Transaction Form - Premium Spacing */
+.create-transaction-form {
+  overflow-y: auto !important;
+  padding: 1.75rem !important;
+  max-height: calc(90vh - 130px) !important;
+  flex: 1 !important;
+}
+
+.create-transaction-form::-webkit-scrollbar {
+  width: 5px !important;
+}
+
+.create-transaction-form::-webkit-scrollbar-thumb {
+  background: var(--border-color) !important;
+  border-radius: 10px !important;
+}
+
+.create-transaction-form::-webkit-scrollbar-thumb:hover {
+  background: var(--text-secondary) !important;
+}
+
+.create-transaction-form::-webkit-scrollbar-track {
+  background: transparent !important;
+}
+
+/* Form Groups - Better Spacing */
+.create-form-group {
+  margin-bottom: 1.5rem !important;
+}
+
+.create-form-label {
+  display: flex !important;
+  align-items: center !important;
+  gap: 0.4rem !important;
+  font-size: 0.75rem !important;
+  font-weight: 700 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.8px !important;
+  color: var(--text-secondary) !important;
+  margin-bottom: 0.65rem !important;
+  opacity: 0.85 !important;
+}
+
+/* Form Inputs - Sleek Design */
+.create-form-input {
+  width: 100% !important;
+  padding: 0.8rem 0.95rem !important;
+  background: rgba(255, 255, 255, 0.03) !important;
+  border: 1.5px solid var(--border-color) !important;
+  border-radius: 11px !important;
+  color: var(--text-primary) !important;
+  font-size: 0.925rem !important;
+  font-family: inherit !important;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  box-sizing: border-box !important;
+}
+
+.create-form-input:hover {
+  background: rgba(255, 255, 255, 0.05) !important;
+  border-color: rgba(0, 122, 204, 0.3) !important;
+}
+
+.create-form-input:focus {
+  outline: none !important;
+  border-color: var(--accent-primary) !important;
+  background: var(--bg-secondary) !important;
+  box-shadow: 0 0 0 3px rgba(0, 122, 204, 0.12), 0 2px 8px rgba(0, 122, 204, 0.1) !important;
+  transform: translateY(-1px) !important;
+}
+
+.create-form-input.error {
+  border-color: var(--danger) !important;
+  background: rgba(255, 107, 107, 0.05) !important;
+}
+
+.create-form-input::placeholder {
+  color: var(--text-secondary) !important;
+  opacity: 0.5 !important;
+}
+
+/* Input with Prefix */
+.create-input-with-prefix {
+  position: relative !important;
+  display: flex !important;
+  align-items: center !important;
+}
+
+.create-input-prefix {
+  position: absolute !important;
+  left: 0.95rem !important;
+  font-size: 0.95rem !important;
+  font-weight: 600 !important;
+  color: var(--text-secondary) !important;
+  pointer-events: none !important;
+  opacity: 0.7 !important;
+}
+
+.create-form-input.with-prefix {
+  padding-left: 2.1rem !important;
+}
+
+/* Textarea - Premium */
+.create-form-textarea {
+  width: 100% !important;
+  padding: 0.8rem 0.95rem !important;
+  background: rgba(255, 255, 255, 0.03) !important;
+  border: 1.5px solid var(--border-color) !important;
+  border-radius: 11px !important;
+  color: var(--text-primary) !important;
+  font-size: 0.925rem !important;
+  font-family: inherit !important;
+  resize: vertical !important;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  box-sizing: border-box !important;
+  min-height: 75px !important;
+  line-height: 1.5 !important;
+}
+
+.create-form-textarea:hover {
+  background: rgba(255, 255, 255, 0.05) !important;
+  border-color: rgba(0, 122, 204, 0.3) !important;
+}
+
+.create-form-textarea:focus {
+  outline: none !important;
+  border-color: var(--accent-primary) !important;
+  background: var(--bg-secondary) !important;
+  box-shadow: 0 0 0 3px rgba(0, 122, 204, 0.12), 0 2px 8px rgba(0, 122, 204, 0.1) !important;
+}
+
+.create-form-textarea::placeholder {
+  color: var(--text-secondary) !important;
+  opacity: 0.5 !important;
+}
+
+/* Error Message */
+.create-error-message {
+  display: flex !important;
+  align-items: center !important;
+  gap: 0.35rem !important;
+  margin-top: 0.5rem !important;
+  font-size: 0.75rem !important;
+  color: var(--danger) !important;
+  font-weight: 600 !important;
+}
+
+/* Type Toggle - Premium Design */
+.create-type-toggle {
+  display: grid !important;
+  grid-template-columns: 1fr 1fr !important;
+  gap: 0.65rem !important;
+  padding: 0.35rem !important;
+  background: rgba(255, 255, 255, 0.02) !important;
+  border-radius: 13px !important;
+  border: 1px solid var(--border-color) !important;
+}
+
+.create-type-btn {
+  all: unset !important;
+  box-sizing: border-box !important;
+  padding: 0.85rem 0.75rem !important;
+  background: transparent !important;
+  border: none !important;
+  border-radius: 10px !important;
+  cursor: pointer !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  gap: 0.4rem !important;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  font-weight: 600 !important;
+  font-size: 0.875rem !important;
+  color: var(--text-secondary) !important;
+}
+
+.create-type-btn:hover {
+  background: rgba(0, 122, 204, 0.08) !important;
+  color: var(--text-primary) !important;
+  transform: translateY(-1px) !important;
+}
+
+.create-type-btn.active {
+  background: linear-gradient(135deg, var(--accent-primary) 0%, var(--accent-hover) 100%) !important;
+  color: white !important;
+  box-shadow: 0 4px 12px rgba(0, 122, 204, 0.35) !important;
+}
+
+.create-type-icon {
+  font-size: 1.5rem !important;
+}
+
+/* Category Grid - Smaller & Rounder */
+.create-category-grid {
+  display: grid !important;
+  grid-template-columns: repeat(5, 1fr) !important;
+  gap: 0.5rem !important;
+}
+
+.create-category-option {
+  all: unset !important;
+  box-sizing: border-box !important;
+  padding: 0.65rem 0.35rem !important;
+  background: rgba(255, 255, 255, 0.03) !important;
+  border: 1.5px solid var(--border-color) !important;
+  border-radius: 14px !important;
+  cursor: pointer !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  gap: 0.35rem !important;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  text-align: center !important;
+  aspect-ratio: 1 / 1 !important;
+  justify-content: center !important;
+}
+
+.create-category-option:hover {
+  background: rgba(0, 122, 204, 0.08) !important;
+  border-color: var(--accent-primary) !important;
+  transform: translateY(-2px) scale(1.05) !important;
+  box-shadow: 0 4px 12px rgba(0, 122, 204, 0.2) !important;
+}
+
+.create-category-option.selected {
+  background: linear-gradient(135deg, rgba(0, 122, 204, 0.2) 0%, rgba(0, 152, 255, 0.2) 100%) !important;
+  border-color: var(--accent-primary) !important;
+  box-shadow: 0 4px 16px rgba(0, 122, 204, 0.3) !important;
+}
+
+.create-category-option-icon {
+  font-size: 1.35rem !important;
+}
+
+.create-category-option-label {
+  font-size: 0.625rem !important;
+  font-weight: 600 !important;
+  color: var(--text-primary) !important;
+  line-height: 1.1 !important;
+}
+
+/* Checkbox Label - Elegant */
+.create-checkbox-label {
+  display: flex !important;
+  align-items: flex-start !important;
+  gap: 0.85rem !important;
+  padding: 1.1rem !important;
+  background: rgba(255, 255, 255, 0.03) !important;
+  border: 1.5px solid var(--border-color) !important;
+  border-radius: 12px !important;
+  cursor: pointer !important;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+.create-checkbox-label:hover {
+  background: rgba(255, 230, 109, 0.05) !important;
+  border-color: rgba(255, 230, 109, 0.3) !important;
+  box-shadow: 0 2px 8px rgba(255, 230, 109, 0.1) !important;
+}
+
+.create-form-checkbox {
+  width: 18px !important;
+  height: 18px !important;
+  margin-top: 0.3rem !important;
+  cursor: pointer !important;
+  accent-color: var(--accent-primary) !important;
+  flex-shrink: 0 !important;
+}
+
+.create-checkbox-content {
+  display: flex !important;
+  align-items: flex-start !important;
+  gap: 0.7rem !important;
+  flex: 1 !important;
+}
+
+.create-checkbox-icon {
+  width: 36px !important;
+  height: 36px !important;
+  background: linear-gradient(135deg, rgba(255, 230, 109, 0.25) 0%, rgba(255, 230, 109, 0.1) 100%) !important;
+  border-radius: 9px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  color: #FFE66D !important;
+  flex-shrink: 0 !important;
+}
+
+.create-checkbox-text {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 0.2rem !important;
+}
+
+.create-checkbox-title {
+  font-size: 0.875rem !important;
+  font-weight: 700 !important;
+  color: var(--text-primary) !important;
+}
+
+.create-checkbox-description {
+  font-size: 0.75rem !important;
+  color: var(--text-secondary) !important;
+  line-height: 1.4 !important;
+  opacity: 0.85 !important;
+}
+
+/* Form Actions - Premium Buttons */
+.create-form-actions {
+  display: flex !important;
+  gap: 0.75rem !important;
+  margin-top: 1.5rem !important;
+  padding-top: 1.5rem !important;
+  border-top: 1px solid var(--border-color) !important;
+}
+
+.create-btn-cancel {
+  flex: 1 !important;
+  padding: 0.8rem 1.25rem !important;
+  background: rgba(255, 255, 255, 0.03) !important;
+  border: 1.5px solid var(--border-color) !important;
+  border-radius: 11px !important;
+  color: var(--text-primary) !important;
+  font-size: 0.9rem !important;
+  font-weight: 600 !important;
+  cursor: pointer !important;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  font-family: inherit !important;
+}
+
+.create-btn-cancel:hover {
+  background: rgba(255, 255, 255, 0.06) !important;
+  border-color: var(--text-secondary) !important;
+  transform: translateY(-1px) !important;
+}
+
+.create-btn-submit {
+  flex: 1 !important;
+  padding: 0.8rem 1.25rem !important;
+  background: linear-gradient(135deg, var(--accent-primary) 0%, var(--accent-hover) 100%) !important;
+  border: none !important;
+  border-radius: 11px !important;
+  color: white !important;
+  font-size: 0.9rem !important;
+  font-weight: 700 !important;
+  cursor: pointer !important;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  box-shadow: 0 4px 14px rgba(0, 122, 204, 0.35) !important;
+  font-family: inherit !important;
+}
+
+.create-btn-submit:hover {
+  transform: translateY(-2px) !important;
+  box-shadow: 0 6px 24px rgba(0, 122, 204, 0.45) !important;
+}
+
+.create-btn-submit:active {
+  transform: translateY(0) !important;
+  box-shadow: 0 2px 8px rgba(0, 122, 204, 0.3) !important;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .create-modal-container {
+    width: 95vw !important;
+    max-width: 95vw !important;
+  }
+
+  .create-modal-header {
+    padding: 1.5rem 1.5rem 1rem !important;
+  }
+
+  .create-modal-header h2 {
+    font-size: 1.25rem !important;
+  }
+
+  .create-transaction-form {
+    padding: 1.5rem !important;
+  }
+
+  .create-category-grid {
+    grid-template-columns: repeat(3, 1fr) !important;
+  }
+
+  .create-form-actions {
+    flex-direction: column !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .create-modal-close {
+    top: 1rem !important;
+    right: 1rem !important;
+    width: 32px !important;
+    height: 32px !important;
+  }
+
+  .create-category-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+
+  .create-type-toggle {
+    grid-template-columns: 1fr !important;
+    gap: 0.5rem !important;
+  }
+}

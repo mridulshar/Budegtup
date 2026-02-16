@@ -1,0 +1,96 @@
+/* IDE-Inspired Color Scheme */
+:root {
+    /* Dark Theme (Default) */
+    --bg-primary: #1e1e1e;
+    --bg-secondary: #252526;
+    --bg-tertiary: #2d2d30;
+    --sidebar-bg: #333333;
+    --accent-primary: #007acc;
+    --accent-hover: #0098ff;
+    --text-primary: #ffffff;
+    --text-secondary: #ffffff;
+    --text-bright: #ffffff;
+    --border-color: #3e3e42;
+    --danger: #f48771;
+    --success: #89d185;
+    --warning: #dcdcaa;
+
+    /* Shadows */
+    --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.3);
+    --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.3);
+    --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.4);
+
+    /* Transitions */
+    --transition-fast: 0.15s ease;
+    --transition-base: 0.2s ease;
+    --transition-slow: 0.3s ease;
+}
+
+/* Light Theme */
+[data-theme="light"],
+.light {
+    --bg-primary: #ffffff;
+    --bg-secondary: #f3f3f3;
+    --bg-tertiary: #e8e8e8;
+    --sidebar-bg: #f8f8f8;
+    --accent-primary: #0078d4;
+    --accent-hover: #106ebe;
+    --text-primary: #1e1e1e;
+    --text-secondary: #696767;
+    --text-bright: #000000;
+    --border-color: #e5e5e5;
+    --danger: #e81123;
+    --success: #107c10;
+    --warning: #ff8c00;
+
+    --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.1);
+    --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
+    --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.15);
+}
+
+/* Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* Scrollbar Styling */
+::-webkit-scrollbar {
+    width: 12px;
+    height: 12px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--bg-secondary);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--border-color);
+    border-radius: 6px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--text-secondary);
+}
+
+/* Focus Styles */
+*:focus-visible {
+    outline: 2px solid var(--accent-primary);
+    outline-offset: 2px;
+}
+
+/* Selection */
+::selection {
+    background: var(--accent-primary);
+    color: var(--text-bright);
+}

@@ -1,0 +1,28 @@
+{
+    "auth": {
+        "password": {
+            "login": {
+                "POST": {
+                    "token": "fake-jwt-token",
+                    "user": {
+                        "id": "1",
+                        "name": "Test User",
+                        "email": "test@example.com"
+                    }
+                }
+            }
+        },
+        "google": {
+            "POST": {
+                "token": "fake-jwt-token-google",
+                "user": {
+                    "id": "1",
+                    "name": "Google User",
+                    "email": "google@example.com"
+                }
+            }
+        }
+    },
+    "transactions": [],
+    "goals": []
+}

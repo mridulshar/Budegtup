@@ -1,0 +1,85 @@
+.cta {
+  padding: 8rem 0;
+  background: black;
+  position: relative;
+  overflow: hidden;
+}
+
+.cta::before {
+  content: '';
+  position: absolute;
+  width: 500px;
+  height: 500px;
+  background: black;
+  border-radius: 50%;
+  filter: blur(100px);
+  top: -200px;
+  right: -200px;
+}
+
+.cta-content {
+  text-align: center;
+  position: relative;
+  z-index: 1;
+  padding: 0 1.5rem;
+  /* added horizontal padding for mobiles */
+}
+
+.cta h2 {
+  font-size: clamp(2.25rem, 4vw + 1.5rem, 3.25rem);
+  font-weight: 800;
+  color: white;
+  margin-bottom: 1rem;
+  letter-spacing: -1px;
+  line-height: 1.1;
+}
+
+.cta p {
+  font-size: clamp(1rem, 2.2vw + 0.5rem, 1.15rem);
+  color: rgba(255, 255, 255, 0.7);
+  margin-bottom: 2.5rem;
+  line-height: 1.5;
+}
+
+.cta .cta-btn {
+  padding: 0.75rem 1.5rem;
+  font-size: clamp(0.95rem, 1.5vw + 0.2rem, 1.05rem);
+  background: var(--accent-primary);
+  color: white;
+  border: none;
+  border-radius: 50px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
+  text-decoration: none;
+}
+
+.cta .cta-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(99, 102, 241, 0.4);
+  background: var(--accent-hover);
+  color: white;
+}
+
+/* Smaller devices (tablet / mobile) tweaks */
+@media (max-width: 768px) {
+  .cta {
+    padding: 6rem 0;
+    /* less vertical padding on mobile */
+  }
+
+  .cta::before {
+    width: 350px;
+    height: 350px;
+    top: -150px;
+    right: -150px;
+    filter: blur(80px);
+  }
+
+  .cta-content {
+    padding: 0 1rem;
+  }
+}
